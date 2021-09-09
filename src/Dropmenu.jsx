@@ -3,8 +3,11 @@ import React  from 'react'
 const Dropmenu = ({dropItem,setDropItem,setItem,item}) => {
     
     const changeHandler = (id,value)=>{
-        if(item==='')setDropItem(prevState=> prevState.filter(x=> x.id!==id) )
-        setItem(value)
+        if(item===''){
+            setDropItem(prevState=> prevState.filter(x=> x.id!==id) )
+            setItem(value)
+        }
+        
     }
     return (
         <div className="dropdown">
@@ -22,6 +25,3 @@ const Dropmenu = ({dropItem,setDropItem,setItem,item}) => {
 }
 
 export default Dropmenu
-
-
-// return <li key={item.id} type="button" value={item.id} onClick={()=>setDropItem(prevState=> prevState.filter(x=> x.id!==item.id) )} >{item.value}</li>
