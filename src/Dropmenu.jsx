@@ -1,11 +1,9 @@
 import React  from 'react'
 
-const Dropmenu = ({dropItem,setDropItem,setItem}) => {
+const Dropmenu = ({dropItem,setDropItem,setItem,item}) => {
     
     const changeHandler = (id,value)=>{
-       
-        console.log("i am called: ", id, value)
-        setDropItem(prevState=> prevState.filter(x=> x.id!==id) )
+        if(item==='')setDropItem(prevState=> prevState.filter(x=> x.id!==id) )
         setItem(value)
     }
     return (

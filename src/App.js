@@ -16,7 +16,7 @@ function App() {
   const [item2, setItem2]= useState('');
   const [item3, setItem3]= useState('');
 
-  console.log("drop Item in app: ", dropItem);
+ // console.log("drop Item in app: ", dropItem);
   const clickHandler=()=>{
        if(item1==='' || item2==='' || item3==='') return alert('Please selected items from each dropDown')
        alert('Succesfully selected')
@@ -29,14 +29,14 @@ function App() {
   return (
     <>
       <div className="App">
-          <Dropmenu dropItem={dropItem} setDropItem={setDropItem} setItem={setItem1} />
-          <Dropmenu dropItem={dropItem} setDropItem={setDropItem} setItem={setItem2}/>
-          <Dropmenu dropItem={dropItem} setDropItem={setDropItem} setItem={setItem3}/>
+          <Dropmenu dropItem={dropItem} setDropItem={setDropItem} setItem={setItem1} item={item1}  />
+          <Dropmenu dropItem={dropItem} setDropItem={setDropItem} setItem={setItem2} item={item2} />
+          <Dropmenu dropItem={dropItem} setDropItem={setDropItem} setItem={setItem3} item={item3} />
           <button type="button" className="btn" onClick={clickHandler}>submit</button>
       </div>
       <div>
         { item1!=='' && item2!=='' && item3!=='' && (
-          <div>
+          <div className="text">
             <h4>From First DropDown: {item1}</h4>
             <h4>From Second DropDown: {item2}</h4>
             <h4>From Third DropDown: {item3}</h4>
