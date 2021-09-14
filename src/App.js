@@ -4,47 +4,81 @@ import React, {  useState } from 'react'
 import Dropmenu from './Dropmenu';
 
 const initialState  = [
-   {value: 'A', id: 1, selected: false},
-   {value: 'B', id: 2, selected: false},
-   {value: 'C', id: 3, selected: false},
-   {value: 'D', id: 4, selected: false},
-   {value: 'E', id: 5, selected: false}
+   {value: 'A', id: 1, selectedBy: 0},
+   {value: 'B', id: 2, selectedBy: 0},
+   {value: 'C', id: 3, selectedBy: 0},
+   {value: 'D', id: 4, selectedBy: 0},
+   {value: 'E', id: 5, selectedBy: 0}
 ]
+const dropState={
+  id: undefined,
+  value:'',
+  haveSelected:false
+}
 function App() {
+  const [submitting, setSubmitting] = useState(false);
   const [dropItem,setDropItem] = useState(initialState);
-  const [item1, setItem1]= useState('');
-  const [item2, setItem2]= useState('');
-  const [item3, setItem3]= useState('');
-
+  const [item1, setItem1]= useState({...dropState,id:1});
+  const [item2, setItem2]= useState({...dropState,id:2});
+  const [item3, setItem3]= useState({...dropState,id:3});
+ 
  // console.log("drop Item in app: ", dropItem);
-  const clickHandler=()=>{
-       if(item1==='' || item2==='' || item3==='') return alert('Please selected items from each dropDown')
-       alert('Succesfully selected')
+  const clearHandler=()=>{
+       console.log('initial:', initialState)
        setDropItem(initialState);
-       setItem1('');
-       setItem2('');
-       setItem3('');
+       setSubmitting(false)
+       setItem1(dropState);
+       setItem2({id:2, value:'', haveSelected:false});
+       setItem3({id:3, value:'', haveSelected:false});
+       console.log("After")
+       console.log(item1)
+       console.log(item2)
+       console.log(item3)
+       console.log(dropItem)
+  }
+
+  
+  const submitHandler =(e)=>{
+    e.preventDefault();
+    if(item1.value==='' || item2.value==='' || item3.value==='') return alert('Please selected items from each dropDown')
+    alert('Succesfully selected')
+    
+    setSubmitting(true);
+
+   
+  
+    console.log(item1)
+    console.log(item2)
+    console.log(item3)
+    console.log(dropItem)
   }
   
   return (
     <>
-      <div className="App">
-          <Dropmenu dropItem={dropItem} setDropItem={setDropItem} setItem={setItem1} item={item1}  />
-          <Dropmenu dropItem={dropItem} setDropItem={setDropItem} setItem={setItem2} item={item2} />
-          <Dropmenu dropItem={dropItem} setDropItem={setDropItem} setItem={setItem3} item={item3} />
-          <button type="button" className="btn" onClick={clickHandler}>submit</button>
+      <div className="App" >
+          <form className="form" onSubmit={submitHandler}>
+              <Dropmenu dropItem={dropItem} setDropItem={setDropItem} setItem={setItem1} item={item1}  />
+              <Dropmenu dropItem={dropItem} setDropItem={setDropItem} setItem={setItem2} item={item2} />
+              <Dropmenu dropItem={dropItem} setDropItem={setDropItem} setItem={setItem3} item={item3} />
+               <div className="buttonGroup">
+                  <button type="submit" className="btn" >submit</button>
+                  <button type="button" className="btn clearButton" onClick={clearHandler}>Clear</button>
+               </div>
+          </form>
+          
       </div>
       <div>
-        { item1!=='' && item2!=='' && item3!=='' && (
-          <div className="text">
-            <h4>From First DropDown: {item1}</h4>
-            <h4>From Second DropDown: {item2}</h4>
-            <h4>From Third DropDown: {item3}</h4>
-          </div>
-        )
-           
-        }
+     
+      {submitting &&
+       <div>
+          <h4 className="text">You submiited the Following info</h4>
+          <p className="text">By DropDown 1: {item1.value}</p>
+          <p className="text">By DropDown 2: {item2.value}</p>
+          <p className="text">By DropDown 3: {item3.value}</p>
+       </div>
+      }
       </div>
+      
     </>
   );
 }

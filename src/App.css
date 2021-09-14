@@ -1,11 +1,16 @@
-.App {
-  text-align: center;
+.App{
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 150px;
 }
-.dropbtn, .btn{
+ .btn{
   background-color: #06aa13;
   color: white;
   padding: 10px 20px;
@@ -16,16 +21,37 @@
   outline: none;
   cursor: pointer;
   margin-left: 10px;
+  margin-top: 10px;
 }
-
-
+.clearButton{
+  background: coral;
+}
+.text{
+ 
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 5px;
+} 
+.dropdown{
+  margin-top: 15px;
+}
+.optionSelect{
+  padding: 10px 20px;
+  background: rgb(73, 65, 65);
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  color: white;
+}
+/* 
 .dropdown {
   position: relative;
   display: inline-block;
-}
+} */
 
 /* Dropdown Content (Hidden by Default) */
-.dropdown-content {
+/* .dropdown-content {
   display: none;
   position: absolute;
   left: 30px;
@@ -52,8 +78,5 @@
   display: block;
 }
 
-.text{
-  margin-top: 50px;
-  text-align: center;
-}
+*/
 

@@ -2,26 +2,63 @@ import React  from 'react'
 
 const Dropmenu = ({dropItem,setDropItem,setItem,item}) => {
     
-    const changeHandler = (id,value)=>{
-        if(item===''){
-            setDropItem(prevState=> prevState.filter(x=> x.id!==id) )
-            setItem(value)
+    const changeHandler = (e)=>{
+        e.preventDefault();
+        console.log("value is: ",e.target.value,item.id)
+        if(!item.haveSelected){
+            setDropItem(prevState => prevState.map((list)=>{
+                if(list.value===e.target.value){
+                    return {...list, selectedBy: item.id}
+                }
+                return list;
+            }))
+            setItem({...item,value:e.target.value, haveSelected:true});
+        }else{
+            setDropItem(prevState => prevState.map((list)=>{
+                if(list.value===e.target.value){
+                    return {...list, selectedBy: item.id}
+                }
+               if(list.value===item.value){
+                   return {...list, selectedBy: 0}
+               }
+                return list;
+            }))
+            setItem({...item,value:e.target.value, haveSelected:true});
         }
-        
     }
     return (
         <div className="dropdown">
-            <button className="dropbtn">Dropdown</button>
-            <div className="dropdown-content">
-                <ul>
-                    {dropItem.map((item)=>{
-                      return <li key={item.id} type="button"   onClick={()=> changeHandler(item.id,item.value)} >{item.value}</li>
-                    }
-                    )}
-                </ul>
-            </div>
+            <label htmlFor="item-select" className="text">Choose a Item:</label>
+            <select  id="item-select" className="optionSelect" onChange={changeHandler}>
+                <option value="">--Please choose an option--</option>
+                {
+                    dropItem.map((optionItem)=>{
+                        return (
+                           (optionItem.selectedBy===item.id || optionItem.selectedBy===0 ) && <option key={optionItem.id} value={optionItem.value}>{optionItem.value}</option>
+                        )
+                    })
+                }
+            </select>
         </div>
     )
 }
 
 export default Dropmenu
+
+
+// {/* <option value="dog">Dog</option>
+// <option value="cat">Cat</option>
+// <option value="hamster">Hamster</option>
+// <option value="parrot">Parrot</option>
+// <option value="spider">Spider</option>
+// <option value="goldfish">Goldfish</option> */}
+
+//   {/* <button className="dropbtn">Dropdown</button>
+//             <div className="dropdown-content">
+//                 <ul>
+//                     {dropItem.map((item)=>{
+//                       return <li key={item.id} type="button"   onClick={()=> changeHandler(item.id,item.value)} >{item.value}</li>
+//                     }
+//                     )}
+//                 </ul>
+//             </div> */}
