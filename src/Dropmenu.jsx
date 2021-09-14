@@ -4,7 +4,6 @@ const Dropmenu = ({dropItem,setDropItem,setItem,item}) => {
     
     const changeHandler = (e)=>{
         e.preventDefault();
-        console.log("value is: ",e.target.value,item.id)
         if(!item.haveSelected){
             setDropItem(prevState => prevState.map((list)=>{
                 if(list.value===e.target.value){
@@ -44,21 +43,3 @@ const Dropmenu = ({dropItem,setDropItem,setItem,item}) => {
 }
 
 export default Dropmenu
-
-
-// {/* <option value="dog">Dog</option>
-// <option value="cat">Cat</option>
-// <option value="hamster">Hamster</option>
-// <option value="parrot">Parrot</option>
-// <option value="spider">Spider</option>
-// <option value="goldfish">Goldfish</option> */}
-
-//   {/* <button className="dropbtn">Dropdown</button>
-//             <div className="dropdown-content">
-//                 <ul>
-//                     {dropItem.map((item)=>{
-//                       return <li key={item.id} type="button"   onClick={()=> changeHandler(item.id,item.value)} >{item.value}</li>
-//                     }
-//                     )}
-//                 </ul>
-//             </div> */}

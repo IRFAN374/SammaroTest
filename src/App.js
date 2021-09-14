@@ -22,19 +22,12 @@ function App() {
   const [item2, setItem2]= useState({...dropState,id:2});
   const [item3, setItem3]= useState({...dropState,id:3});
  
- // console.log("drop Item in app: ", dropItem);
   const clearHandler=()=>{
-       console.log('initial:', initialState)
        setDropItem(initialState);
        setSubmitting(false)
-       setItem1(dropState);
+       setItem1({id:1, value:'', haveSelected:false});
        setItem2({id:2, value:'', haveSelected:false});
        setItem3({id:3, value:'', haveSelected:false});
-       console.log("After")
-       console.log(item1)
-       console.log(item2)
-       console.log(item3)
-       console.log(dropItem)
   }
 
   
@@ -42,15 +35,7 @@ function App() {
     e.preventDefault();
     if(item1.value==='' || item2.value==='' || item3.value==='') return alert('Please selected items from each dropDown')
     alert('Succesfully selected')
-    
     setSubmitting(true);
-
-   
-  
-    console.log(item1)
-    console.log(item2)
-    console.log(item3)
-    console.log(dropItem)
   }
   
   return (
