@@ -26,6 +26,13 @@
 .clearButton{
   background: coral;
 }
+.active{
+  background: green;
+  font-weight: bold;
+}
+.active:hover{
+  background: green;
+}
 .text{
  
   text-align: center;
@@ -43,6 +50,11 @@
   border: none;
   border-radius: 50px;
   color: white;
+}
+select option{
+  padding: 10px;
+  margin: 10px;
+  font-weight: 20px;
 }
 /* 
 .dropdown {

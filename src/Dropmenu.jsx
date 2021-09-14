@@ -33,7 +33,12 @@ const Dropmenu = ({dropItem,setDropItem,setItem,item}) => {
                 {
                     dropItem.map((optionItem)=>{
                         return (
-                           (optionItem.selectedBy===item.id || optionItem.selectedBy===0 ) && <option key={optionItem.id} value={optionItem.value}>{optionItem.value}</option>
+                           (optionItem.selectedBy===item.id || optionItem.selectedBy===0 ) &&
+                            <option 
+                               key={optionItem.id} 
+                               value={optionItem.value} 
+                               className={`${optionItem.selectedBy===item.id? 'active': null }`}
+                            >{optionItem.value}</option>
                         )
                     })
                 }
